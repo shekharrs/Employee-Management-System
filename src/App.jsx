@@ -2,35 +2,22 @@ import React, { useContext, useEffect, useState } from "react";
 import Login from "./components/Auth/Login";
 import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
-import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
+// import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const authData = useContext(AuthContext);
 
-  useEffect(() => {
-    if (authData) {
-      const loggedInUser = localStorage.getItem("loggedInUser");
-      if (loggedInUser) {
-        setUser(loggedInUser.role);
-      }
-    }
-  }, [authData]);
+  // Received the data through AuthContext
+  const authData = useContext(AuthContext)
+  console.log(authData);
 
+  // Handle login based on role
   const handleLogin = (email, password) => {
     if (email == "admin@me.com" && password == "123") {
       setUser("admin");
-      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
-    } else if (
-      authData &&
-      authData.employees.find((e) => email == e.email && password == e.password)
-    ) {
-      setUser("employee");
-      localStorage.setItem(
-        "loggedInUser",
-        JSON.stringify({ role: "employee" })
-      );
+    } else if (email == "user@me.com" && password == "123") {
+      setUser('employee');
     } else {
       alert("Invalid Credentials");
     }
@@ -38,10 +25,10 @@ const App = () => {
 
   return (
     <>
-      {/* If the user data is not stored in Local Storage then it will open directly the login form */}
+      {/* If the user data is not stored in Local Storage then it will render directly the login form otherwise it render the screen */}
       {!user ? <Login handleLogin={handleLogin} /> : ""}
 
-      {/* If the user data is equal to admin then it open AdminDashboard otherwise it open EmployeeDashboard */}
+      {/* If the user data is equal to admin then it render AdminDashboard otherwise it render EmployeeDashboard */}
       {user == "admin" ? <AdminDashboard /> : <EmployeeDashboard />}
     </>
   );
