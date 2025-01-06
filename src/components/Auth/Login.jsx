@@ -44,7 +44,7 @@ const Login = ({handleLogin}) => {
             type="password"
             placeholder="Enter your password"
           />
-          <button className="text-white border-none bg-emerald-600 outline-none rounded-full py-3 px-28 text-xl placeholder:text-white mt-5">
+          <button className="text-white border-none bg-emerald-600 outline-none rounded-full py-3 px-28 text-xl placeholder:text-white mt-5 active:scale-90">
             Login
           </button>
         </form>

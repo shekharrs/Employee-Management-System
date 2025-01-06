@@ -12,15 +12,15 @@ const AuthProvider = ({ children }) => {
 
   useEffect(()=>{
     setLocalStorage();
-    const {employees, admin} = getLocalStorage();
-    setUserData({employees, admin}) 
+    const {employees} = getLocalStorage();
+    setUserData(employees) 
   },[])
 
   return (
     <div>
       {/* Wrap the children component inside the Provider */}
       {/* After that pass a value */}
-      <AuthContext.Provider value={userData}>
+      <AuthContext.Provider value={[userData,setUserData]}>
         {children}
       </AuthContext.Provider>
     </div>
