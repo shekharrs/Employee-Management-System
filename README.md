@@ -8,3 +8,4 @@ Key Features:
   - Admin Dashboard: Assign tasks seamlessly to employees.
   - Employee Dashboard: View and accept assigned tasks (no rejecting allowed—it's all part of the fun! 😄).
     
+This project showcases my skills in frontend development while adding a humorous twist to task management.
